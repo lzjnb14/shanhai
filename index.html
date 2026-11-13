@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>山海有灵 · 异兽人格图鉴｜你是《山海经》里的哪一只兽</title>
+<meta name="description" content="取《山海经》十八卷中十六只异兽，一兽一型。三十二问，问出你的性情归属，得到一只与自己最像的兽，和它留在原文里的那一句。">
+<meta name="theme-color" content="#efe4cd">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23a5332a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23f4e9d2' font-family='KaiTi,serif'%3E山%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="assets/gut/01.webp">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- ============ 开场 · 入卷 ============ -->
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="展卷入内">
+  <div class="intro-bg" aria-hidden="true">
+    <i class="intro-sun"></i>
+    <i class="intro-glow"></i>
+    <span class="intro-char">卷</span>
+  </div>
+  <div class="intro-rod" aria-hidden="true"></div>
+  <p class="intro-side intro-side-l" aria-hidden="true">南山经 · 西山经 · 北山经</p>
+  <p class="intro-side intro-side-r" aria-hidden="true">东山经 · 中山经 · 海内经</p>
+  <div class="intro-stage">
+    <p class="intro-kicker">山海经 · 异兽人格图鉴</p>
+    <h2 class="intro-title" aria-label="山海有灵"><span>山</span><span>海</span><span>有</span><span>灵</span></h2>
+    <p class="intro-sub">十八卷 · 十六兽 · 一兽一型</p>
+    <button class="intro-seal" id="introEnter" aria-label="展卷入内"><span>入</span><span>卷</span></button>
+    <p class="intro-hint">轻触朱印 · 展卷</p>
+  </div>
+  <button class="intro-skip" id="introSkip">跳过</button>
+  <div class="intro-roller" aria-hidden="true"></div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<canvas id="motes" aria-hidden="true"></canvas>
+
+<!-- ============ 顶栏 ============ -->
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top" aria-label="山海有灵首页">
+    <span class="brand-seal">山海</span>
+    <span class="brand-text"><b>异兽人格图鉴</b><i>SHAN HAI · SIXTEEN</i></span>
+  </a>
+  <nav class="nav">
+    <a href="#codex">十六型</a>
+    <a href="#about">此卷</a>
+    <button class="sound-btn" id="soundBtn" aria-pressed="false" title="开启风声">
+      <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="sound-label">风声</span>
+    </button>
+    <button class="nav-cta" data-start="full">开始测灵</button>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- ============ 卷首 ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-sun"></div>
+      <div class="hero-halo"></div>
+      <svg class="hero-mountains" viewBox="0 0 1600 620" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="mFar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#cfbc97" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#e6d7b9" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="mMid" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#a8916b" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#c9b893" stop-opacity=".12"/>
+          </linearGradient>
+          <linearGradient id="mNear" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3a3126" stop-opacity=".82"/>
+            <stop offset="1" stop-color="#5b4c39" stop-opacity=".35"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 470 L90 420 L150 448 L245 356 L330 430 L410 392 L520 462 L610 350 L700 424 L790 372 L880 450 L980 380 L1080 446 L1180 352 L1280 430 L1380 386 L1470 452 L1560 400 L1600 424 L1600 620 L0 620 Z" fill="url(#mFar)"/>
+        <path d="M0 520 L120 462 L210 500 L300 420 L400 492 L500 442 L600 512 L720 430 L820 498 L930 440 L1040 508 L1150 436 L1250 500 L1360 444 L1460 508 L1560 466 L1600 488 L1600 620 L0 620 Z" fill="url(#mMid)"/>
+        <path d="M0 575 L130 520 L240 556 L340 486 L470 560 L590 508 L700 566 L830 500 L950 562 L1070 512 L1190 568 L1310 506 L1430 562 L1540 522 L1600 546 L1600 620 L0 620 Z" fill="url(#mNear)"/>
+      </svg>
+      <div class="hero-haze"></div>
+      <div class="hero-giant">山海</div>
+    </div>
+
+    <div class="hero-edge" aria-hidden="true">
+      <span>南山经</span><span>西山经</span><span>北山经</span><span>东山经</span><span>中山经</span>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow reveal"><span class="rule"></span>SHAN HAI · 十六型异兽人格<span class="rule"></span></p>
+        <h1 class="hero-title reveal">
+          <span class="line1">山海有灵</span>
+          <span class="line2">你是哪一<em>兽</em><svg class="ink-ring" viewBox="0 0 220 220" aria-hidden="true"><path d="M110 18c42-6 84 26 92 66 9 45-18 95-64 108-44 13-93-8-112-50C7 99 30 47 74 27c20-9 42-10 62-5"/></svg></span>
+        </h1>
+        <p class="lede reveal">十六只《山海经》异兽，一兽对应一型人格。<br>三十二问之后，你会遇见最像自己的那只，<br class="br-desk">以及它留在原文里的那一句。</p>
+        <div class="cta-row reveal">
+          <button class="btn btn-primary" data-start="full">
+            <span>开始测灵</span><i>三十二问</i>
+          </button>
+          <button class="btn btn-ghost" data-start="quick">
+            <span>八问速测</span><i>约一分钟</i>
+          </button>
+        </div>
+        <div class="hero-meta reveal">
+          <div><b>16</b><span>异兽</span></div>
+          <div><b>32</b><span>问题</span></div>
+          <div><b>4</b><span>维度</span></div>
+          <div><b>3<small>min</small></b><span>用时</span></div>
+        </div>
+        <a class="last-result" id="lastResult" hidden>
+          <span class="lr-label">上次测灵</span>
+          <span class="lr-type" id="lrType"></span>
+          <span class="lr-name" id="lrName"></span>
+          <span class="lr-arrow">重看 →</span>
+        </a>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="orbit">
+          <div class="orbit-ticks"></div>
+          <div class="orbit-ring"></div>
+          <div class="disc" id="beastDisc" role="button" tabindex="0" aria-label="查看当前异兽">
+            <div class="disc-img-wrap">
+              <img id="discImg" src="assets/gut/01.webp" alt="烛龙工笔插画" draggable="false">
+            </div>
+            <div class="disc-vignette"></div>
+            <div class="disc-mark" aria-hidden="true">灵</div>
+          </div>
+          <span class="orbit-tag t1">东</span>
+          <span class="orbit-tag t2">南</span>
+          <span class="orbit-tag t3">西</span>
+          <span class="orbit-tag t4">北</span>
+          <button class="disc-next" id="discNext" aria-label="换一只异兽"><span>换一兽</span><i>↻</i></button>
+        </div>
+        <div class="disc-caption" id="discCaption">
+          <span class="cap-type" id="capType">INTJ</span>
+          <span class="cap-name" id="capName">烛龙</span>
+          <span class="cap-chapter" id="capChapter">海外北经</span>
+        </div>
+        <p class="disc-hint">点击圆盘，展开它的原文与性情</p>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true"><span>向下 · 观十六兽</span><i></i></div>
+  </section>
+
+  <!-- ============ 走马灯 ============ -->
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </section>
+
+  <!-- ============ 图鉴 ============ -->
+  <section class="codex" id="codex">
+    <div class="codex-head">
+      <div class="sec-mark"><span>图鉴</span><i>卷之二</i></div>
+      <div class="codex-intro reveal">
+        <p class="kicker">THE CODEX · 十六型</p>
+        <h2>十六只兽，<br>十六种活法</h2>
+        <p class="sec-sub">四族分卷：分析家以理驭世，外交家以心度世，守护者以序守世，探险家以身试世。点开任一兽，读它的原文、阴影与相处之道。</p>
+      </div>
+      <div class="filters reveal" role="tablist" aria-label="按家族筛选">
+        <button class="filter on" data-family="all">全部 <em>16</em></button>
+        <button class="filter" data-family="NT">分析家 <em>4</em></button>
+        <button class="filter" data-family="NF">外交家 <em>4</em></button>
+        <button class="filter" data-family="SJ">守护者 <em>4</em></button>
+        <button class="filter" data-family="SP">探险家 <em>4</em></button>
+      </div>
+    </div>
+    <div class="codex-grid" id="codexGrid"></div>
+  </section>
+
+  <!-- ============ 此卷 ============ -->
+  <section class="about" id="about">
+    <div class="about-bg" aria-hidden="true">
+      <div class="about-char">经</div>
+      <svg viewBox="0 0 1600 400" preserveAspectRatio="xMidYMax slice"><path d="M0 330 L140 268 L260 312 L390 232 L520 306 L650 262 L790 330 L920 250 L1050 318 L1190 258 L1320 326 L1450 270 L1600 322 L1600 400 L0 400Z" fill="#0f0c09" opacity=".45"/></svg>
+    </div>
+    <div class="about-inner">
+      <div class="about-side reveal">
+        <div class="sec-mark light"><span>此卷</span><i>卷之三</i></div>
+        <p class="kicker gold">ABOUT THIS SCROLL</p>
+        <h2>把原文里的<br>十几个字，<br>读成人。</h2>
+        <div class="about-seal">山海<br>有灵</div>
+      </div>
+      <div class="about-body">
+        <article class="about-item reveal">
+          <span class="num">壹</span>
+          <h3>为什么可以用异兽做人格对照</h3>
+          <p>《山海经》写物，不写故事。每一条不过一二十字——形体、声音、对人的后果，三样说完，就换下一座山。这种写法恰好是性格速写：形体对应行为倾向，声音对应表达方式，征兆对应他给周围人带来的影响。</p>
+        </article>
+        <article class="about-item reveal">
+          <span class="num">贰</span>
+          <h3>三条择取标准</h3>
+          <p>原文必须有可读的性情线索；形象要有辨识度，一眼能记住；还要能落到四个维度上——是否主动对外、凭具体还是凭整体、以结果还是以人心为判据、守序还是应变。四样都对上，才算契合。</p>
+        </article>
+        <article class="about-item reveal">
+          <span class="num">叁</span>
+          <h3>一句提醒</h3>
+          <p>这是意象类比，不是心理测评。本自测借鉴 MBTI 的二分偏好结构，仅供娱乐与社交话题参考，未经过心理测量学检验。把它当作“照镜子的话题”，别当“结论”。</p>
+        </article>
+        <div class="about-actions reveal">
+          <button class="btn btn-gold" data-start="full"><span>现在开始</span><i>三十二问</i></button>
+          <span class="about-note">据《山海经》十八卷通行本 · 择十六兽</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-brand">山海有灵 · 异兽人格图鉴</span>
+    <span class="footer-mid">一兽一型 · 仅供娱乐</span>
+    <button class="footer-replay" id="replayIntro">重看开场</button>
+    <span class="footer-copy">© 2026 · 文字据《山海经》十八卷通行本整理</span>
+  </div>
+</footer>
+
+<!-- ============ 测灵 ============ -->
+<div class="overlay quiz-overlay" id="quizOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="异兽人格自测">
+  <div class="quiz-shell">
+    <header class="quiz-top">
+      <div class="quiz-brand">
+        <span class="brand-seal small">山海</span>
+        <span class="quiz-mode" id="quizMode">测灵 · 三十二问</span>
+      </div>
+      <div class="quiz-group" id="quizGroup">第一组 · 能量来源</div>
+      <button class="quiz-close" id="quizClose" aria-label="退出测灵">
+        <span>退出</span><i>×</i>
+      </button>
+    </header>
+
+    <div class="progress-wrap">
+      <div class="progress-meta"><span id="progressLabel">第 01 问</span><span id="progressPct">0%</span></div>
+      <div class="progress"><div class="progress-fill" id="progressFill"></div><div class="progress-ticks" id="progressTicks"></div></div>
+    </div>
+
+    <div class="quiz-stage">
+      <div class="stage-num" id="stageNum" aria-hidden="true">01</div>
+      <div class="chapter-flash" id="chapterFlash" aria-hidden="true">
+        <span class="cf-glyph" id="cfGlyph">气</span>
+        <span class="cf-line"></span>
+        <span class="cf-roman" id="cfRoman">第一组</span>
+        <span class="cf-axis" id="cfAxis">能量来源</span>
+      </div>
+
+      <article class="q-card" id="qCard">
+        <p class="q-kicker" id="qKicker">第一组 · 能量来源</p>
+        <h2 class="q-stem" id="qStem"></h2>
+        <div class="q-options" id="qOptions"></div>
+        <div class="q-foot">
+          <button class="q-back" id="qBack">← 上一题</button>
+          <span class="q-tip">选更接近平时做法的那一项 · 键盘 <kbd>A</kbd><kbd>B</kbd></span>
+        </div>
+      </article>
+    </div>
+
+    <footer class="quiz-foot">
+      <span id="quizFootNote">题目只描述日常倾向，没有对错。</span>
+      <span class="quiz-dots" id="quizDots"></span>
+    </footer>
+  </div>
+</div>
+
+<!-- ============ 结果 ============ -->
+<div class="overlay result-overlay" id="resultOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="测灵结果">
+  <div class="result-scroll" id="resultScroll">
+    <button class="overlay-close light" id="resultClose" aria-label="关闭结果">×</button>
+
+    <header class="result-hero" id="resultHero">
+      <div class="result-hero-bg" aria-hidden="true">
+        <div class="rh-glow"></div>
+        <div class="rh-char" id="resBigChar">龙</div>
+        <div class="rh-fine"></div>
+      </div>
+      <div class="result-hero-inner">
+        <p class="kicker gold reveal">测灵完毕 · 你的本命异兽</p>
+        <div class="type-letters" id="resType" aria-label="人格类型"></div>
+        <h1 id="resName">烛龙</h1>
+        <p class="res-alias"><span id="resAlias">烛阴</span><i>·</i><span id="resChapter">海外北经</span><i>·</i><span id="resFamily">分析家</span></p>
+        <p class="res-one" id="resOne">「独处定规，不言而行」</p>
+      </div>
+      <div class="rh-verse" id="resVerse" aria-hidden="true"></div>
+      <div class="stamp" id="resStamp"><span>异兽</span><span>本命</span></div>
+    </header>
+
+    <div class="result-grid">
+      <aside class="result-figure">
+        <figure class="art-frame">
+          <img id="resImg" alt="">
+          <span class="art-corner tl"></span><span class="art-corner tr"></span><span class="art-corner bl"></span><span class="art-corner br"></span>
+          <figcaption class="art-caption"><span id="resArtCaption">图 · 烛龙</span><i>工笔淡彩</i></figcaption>
+        </figure>
+        <div class="art-switch" role="group" aria-label="切换画风">
+          <button data-art="gut" class="on">工笔</button>
+          <button data-art="q">Q版</button>
+        </div>
+        <button class="btn btn-primary btn-wide" id="saveCard"><span>保存灵签</span><i>PNG</i></button>
+        <button class="btn btn-ghost btn-wide" id="copyResult">复制结果</button>
+      </aside>
+
+      <div class="result-body">
+        <blockquote class="res-quote reveal">
+          <span class="quote-mark">“</span>
+          <p id="resQuote"></p>
+          <cite id="resSource">《海外北经》</cite>
+        </blockquote>
+
+        <section class="dim-panel reveal">
+          <div class="panel-head"><h3><span>四维</span>命盘</h3><em>FOUR AXES</em></div>
+          <div id="resDims"></div>
+        </section>
+
+        <section class="res-field reveal">
+          <h3><span class="fnum">壹</span>性情关键词</h3>
+          <div class="chips" id="resKeys"></div>
+        </section>
+        <section class="res-field reveal">
+          <h3><span class="fnum">贰</span>对应关系</h3>
+          <p id="resWhy"></p>
+        </section>
+        <section class="res-field shadow reveal">
+          <h3><span class="fnum">叁</span>阴影面</h3>
+          <p id="resShadow"></p>
+        </section>
+        <section class="res-field tip reveal">
+          <h3><span class="fnum">肆</span>相处提示</h3>
+          <p id="resTip"></p>
+        </section>
+
+        <div class="res-actions reveal">
+          <button class="btn btn-primary" data-start="full"><span>再测一次</span><i>↻</i></button>
+          <button class="btn btn-ghost" id="backToCodex">看完整图鉴</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="result-foot">
+      <span>此为意象类比，非心理测评</span>
+      <span class="rf-sep">·</span>
+      <span>结果会随情境与阶段变化，不必当真</span>
+    </footer>
+  </div>
+</div>
+
+<!-- ============ 图鉴详情 ============ -->
+<div class="overlay detail-overlay" id="detailOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="异兽详情">
+  <div class="detail-scroll" id="detailScroll">
+    <button class="overlay-close light" id="detailClose" aria-label="关闭详情">×</button>
+    <div class="detail-inner" id="detailInner"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
